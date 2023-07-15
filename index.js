@@ -24,7 +24,8 @@ let tasks = [];
 
 // Routes
 app.get('/', (req, res) => {
-    res.render('index', { tasks, index: true });
+    const today = new Date().toLocaleDateString(); // Get today's date as a string
+    res.render('index', { tasks, today });
 });
 
 app.post('/', (req, res) => {

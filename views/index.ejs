@@ -22,22 +22,52 @@
 
 
 
+    <h2>All Tasks</h2>
+    <% if (tasks.length > 0) { %>
+        <ul class="list-group text-center" style="align-items: center">
+            <% tasks.forEach(function(task, index) { %>
+                <% if (task.date.toDateString() !== today) { %>
+                    <li class="list-group-item rounded-pill " style="background-color: navajowhite; width: 400px; align-items: center">
+                        <h4><%= task.name %></h4>
+                        <p>Date: <%= task.date.toLocaleDateString() %></p>
+                        <p>Description: <%= task.description %></p>
+                        <!-- Add additional fields here if needed -->
+                        <form action="/" method="POST" style="display:inline;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="taskIndex" value="<%= index %>">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </li>
+                <% } %>
+            <% }) %>
+        </ul>
+    <% } %>
+    
 
+    <% let todayTasks = tasks.filter(task => task.date.toDateString() === new Date().toDateString()); %>
+
+    <h2>Tasks for Today</h2>
     <ul class="list-group text-center" style="align-items: center">
-        <% tasks.forEach(function(task, index) { %>
-            <li class="list-group-item rounded-pill " style="background-color: navajowhite; width: 400px; align-items: center">
-                <h4><%= task.name %></h4>
-                <p>Date: <%= task.date.toLocaleDateString() %></p>
-                <p>Description: <%= task.description %></p>
-                <!-- Add additional fields here if needed -->
-                <form action="/" method="POST" style="display:inline;">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="taskIndex" value="<%= index %>">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </li>
-        <% }) %>
+        <% if (todayTasks.length > 0) { %>
+            <% todayTasks.forEach(function(task, index) { %>
+                <li class="list-group-item rounded-pill " style="background-color: navajowhite; width: 400px; align-items: center">
+                    <h4><%= task.name %></h4>
+                    <p>Date: <%= task.date.toLocaleDateString() %></p>
+                    <p>Description: <%= task.description %></p>
+                    <!-- Add additional fields here if needed -->
+                    <form action="/" method="POST" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="taskIndex" value="<%= index %>">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <p>No tasks for today.</p>
+        <% } %>
     </ul>
+
+
 
 </div>
 <!--
