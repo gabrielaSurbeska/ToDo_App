@@ -27,7 +27,6 @@
     <% if (tasks.length > 0) { %>
         <ul class="list-group text-center" style="align-items: center">
             <% tasks.forEach(function(task, index) { %>
-                <% if (task.date.toDateString() !== today) { %> <!-- Use 'today' variable here -->
                     <li class="list-group-item rounded-pill " style="background-color: navajowhite; width: 400px; align-items: center">
                         <h4><%= task.name %></h4>
                         <p>Date: <%= task.date.toLocaleDateString() %></p>
@@ -39,7 +38,6 @@
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </li>
-                <% } %>
             <% }) %>
         </ul>
     <% } %>
