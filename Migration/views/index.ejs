@@ -13,8 +13,8 @@
 <div class="container text-center mt-5 rounded-pill" style="background-color: navajowhite">
     <h1>To-Do App</h1>
 
-    <form id="taskForm" action="/" method="POST" onsubmit="add(event)" >
-        <input type="text" name="name" class="input-field" id="task" placeholder="Enter a task name">
+    <form id="taskForm" action="/add" method="post" onsubmit="add(event)">
+    <input type="text" name="name" class="input-field" id="task" placeholder="Enter a task name">
         <input type="date" id="date" name="taskDate">
         <input type="text" id="description" name="description"  class="input-field" placeholder="Enter a description">
         <button type="submit" id="submitButton" >Add Task</button>
@@ -22,17 +22,18 @@
 
 
 
+
     <h2>All Tasks</h2>
     <% if (tasks.length > 0) { %>
         <ul class="list-group text-center" style="align-items: center">
             <% tasks.forEach(function(task, index) { %>
-                <% if (task.date.toDateString() !== today) { %>
+                <% if (task.date.toDateString() !== today) { %> <!-- Use 'today' variable here -->
                     <li class="list-group-item rounded-pill " style="background-color: navajowhite; width: 400px; align-items: center">
                         <h4><%= task.name %></h4>
                         <p>Date: <%= task.date.toLocaleDateString() %></p>
                         <p>Description: <%= task.description %></p>
                         <!-- Add additional fields here if needed -->
-                        <form action="/" method="POST" style="display:inline;">
+                        <form action="/delete" method="post">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="taskIndex" value="<%= index %>">
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -42,7 +43,7 @@
             <% }) %>
         </ul>
     <% } %>
-    
+
 
     <% let todayTasks = tasks.filter(task => task.date.toDateString() === new Date().toDateString()); %>
 
@@ -55,7 +56,7 @@
                     <p>Date: <%= task.date.toLocaleDateString() %></p>
                     <p>Description: <%= task.description %></p>
                     <!-- Add additional fields here if needed -->
-                    <form action="/" method="POST" style="display:inline;">
+                    <form action="/delete" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="taskIndex" value="<%= index %>">
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -70,28 +71,6 @@
 
 
 </div>
-<!--
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#taskForm').submit(function(e) {
-            e.preventDefault(); // Prevent form submission
-
-            var name = $('#name').val();
-            var date = $('#date').val();
-            var description = $('#description').val();
-
-            if (name.trim() === '' || date.trim() === '' || description.trim() === '') {
-                alert('Please fill in all fields');
-                return; // Stop further execution
-            }
-
-            // If all inputs are not empty, proceed with form submission
-            $(this).unbind('submit').submit();
-        });
-    });
-</script>
--->
 <script>
     function add(event){
         var task = document.getElementById('task').value;
@@ -100,12 +79,11 @@
 
         if(task=='' || date=='' || description==''){
             alert('Please fill in all the fields');
-            event.preventDefault()
+            event.preventDefault();
         }
     }
 
-
-
 </script>
+
 </body>
 </html>
