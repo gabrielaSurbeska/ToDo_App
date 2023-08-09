@@ -58,8 +58,8 @@ git clone <repository_url>
 *Препорачливо е WebStorm*
 
 6. Отворете го терминалот и внесете ја следната команда
-7. 
-   node index.ejs
+ 
+node index.ejs
 
  *Апликацијата ви се стартува на localhost:3000*
 
