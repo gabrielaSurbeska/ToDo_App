@@ -14,13 +14,17 @@ _Todo App_
 За да ја извршите апликацијата To-Do, треба да имате инсталирано Deno на вашиот уред.Deno е достапен за различни оперативни системи и може да се инсталира со помош на следниве команди:
 
 1.Инсталација на Deno на вашиот уред
+
 Using Shell (macOS and Linux):
+
 curl -fsSL https://deno.land/x/install/install.sh | sh
 
 Using PowerShell (Windows):
+
 irm https://deno.land/install.ps1 | iex
 
 2.Стартување на апликација
+
 За да започнете со апликацијата To-Do, клонирајте го складиштето:
 
 git clone <repository_url>
@@ -29,6 +33,7 @@ git clone <repository_url>
 *Препорачливо е WebStorm*
 
 4.Отворете го терминалот и внесете ја следната команда
+
 deno run server.ts
 
 *Апликацијата ви се стартува на localhost:3000*
@@ -53,7 +58,8 @@ git clone <repository_url>
 *Препорачливо е WebStorm*
 
 6. Отворете го терминалот и внесете ја следната команда
+7. 
    node index.ejs
 
-   *Апликацијата ви се стартува на localhost:3000*
+ *Апликацијата ви се стартува на localhost:3000*
 
